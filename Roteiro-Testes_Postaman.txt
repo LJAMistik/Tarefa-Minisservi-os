@@ -1,0 +1,240 @@
+########################################## ROTEIRO PRA TESTE - POSTMAN ############################################
+___________________________________________________________________________________________________________________
+
+1. Adicionar um aluno:
+
+Método: POST
+
+URL: http://localhost:4000/alunos
+
+Body (raw):
+
+[JSON]
+{
+  "RA": "12345",
+  "Nome": "Teste Primeiro",
+  "Turma": "primeiro_noite"
+}
+
+Resultado esperado: Deve retornar uma mensagem indicando que o aluno foi adicionado com sucesso.
+________________________________________________________________________________________________________________
+
+
+2. Adicionar um curso a um aluno específico:
+
+Método: POST
+
+URL: http://localhost:4000/alunos/:RA/cursos
+
+*OBS: Substitua :RA pelo RA do aluno específico. 
+Por exemplo, se o RA do aluno for "12345", a URL seria http://localhost:4000/alunos/12345/cursos.
+
+Body (raw):
+
+[JSON]
+{
+  "Curso": "Informatica"
+}
+
+Resultado esperado: Deve retornar uma mensagem indicando que o curso foi adicionado ao aluno com sucesso.
+________________________________________________________________________________________________________________
+
+
+3. Atualizar os dados de um aluno (nome e turma):
+
+Método: PUT
+
+URL: http://localhost:4000/alunos/:RA
+
+Substitua :RA pelo RA do aluno que deseja atualizar.
+
+*OBS: Substitua :RA pelo RA do aluno específico. 
+Por exemplo, se o RA do aluno for "12345", a URL seria http://localhost:4000/alunos/12345
+
+Body (raw):
+
+[JSON]
+{
+  "Nome": "Teste Primeiro de Atualização",
+  "Turma": "primeiro_informatica_noite",
+}
+
+Resultado esperado: Deve retornar uma mensagem indicando que os dados do aluno foram atualizados com sucesso.
+
+
+**************************************************************
+Para verificar se foi mesmo alterado:
+
+Método: GET
+
+URL: http://localhost:4000/alunos/:RA
+
+Substitua :RA pelo (novo) RA do aluno que deseja consultar.
+Por exemplo: http://localhost:4000/alunos/12345
+________________________________________________________________________________________________________________
+
+
+4. Atualizar um curso de um aluno específico:
+
+Método: PUT
+
+URL: http://localhost:4000/alunos/:RA/cursos/:CursoAntigo
+
+Substitua :RA pelo RA do aluno e :Curso pelo nome do curso que deseja atualizar.
+Por exemplo: http://localhost:4000/alunos/12345/cursos/Informatica
+
+Body (raw):
+
+[JSON]
+{
+  "NovoCurso": "Redes"
+}
+
+Resultado esperado: Deve retornar uma mensagem indicando que o curso do aluno foi atualizado com sucesso.
+
+**************************************************************
+Para verificar se foi mesmo alterado:
+
+Método: GET
+
+URL: http://localhost:4000/alunos/:RA
+
+Substitua :RA pelo (novo) RA do aluno que deseja consultar.
+Por exemplo: http://localhost:4000/alunos/12345
+
+Body (none): 
+*Não é necessário escrever um JSON.
+________________________________________________________________________________________________________________
+
+
+5. Remover um aluno:
+
+Método: DELETE
+
+URL: http://localhost:4000/alunos/:RA
+
+Substitua :RA pelo RA do aluno que deseja remover.
+Por exemplo: http://localhost:4000/alunos/12345
+
+Body (none): 
+*Não é necessário escrever um JSON.
+
+Resultado esperado: Deve retornar uma mensagem indicando que o aluno foi removido com sucesso.
+
+**************************************************************
+Para verificar se foi mesmo removido:
+
+Método: GET
+
+URL: http://localhost:4000/alunos/:RA
+
+Substitua :RA pelo (novo) RA do aluno que deseja consultar.
+Por exemplo: http://localhost:4000/alunos/12345
+
+Body (none): 
+*Não é necessário escrever um JSON.
+
+Deve aparecer a mensagem: "Aluno não encontrado".
+________________________________________________________________________________________________________________
+
+
+6. Remover um curso de um aluno específico:
+
+Método: DELETE
+
+URL: http://localhost:4000/alunos/:RA/cursos/:Curso
+
+Substitua :RA pelo RA do aluno e :Curso pelo nome do curso que deseja remover.
+Por exemplo: http://localhost:4000/alunos/67890/cursos/Banco-de-Dados
+
+Body (none): 
+*Não é necessário escrever um JSON.
+
+Resultado esperado: Deve retornar uma mensagem indicando que o curso foi removido do aluno com sucesso.
+
+**************************************************************
+Para verificar se o curso foi mesmo removido:
+
+Método: GET
+
+URL: http://localhost:4000/alunos/:RA
+
+Substitua :RA pelo (novo) RA do aluno que deseja consultar.
+Por exemplo: http://localhost:4000/alunos/67890
+
+Body (none): 
+*Não é necessário escrever um JSON.
+
+Resultado esperado: Deve aparecer apenas os cursos que não foram removidos, ou
+
+{
+    "Nome": "Teste Terceiro",
+    "Turma": "primeiro_noite",
+    "Cursos": []
+}
+
+________________________________________________________________________________________________________________
+
+
+7. Obter a lista de todos os alunos:
+
+Método: GET
+
+URL: http://localhost:4000/alunos
+
+Body (none): 
+*Não é necessário escrever um JSON.
+
+Resultado esperado: Deve retornar uma lista com todos os alunos cadastrados.
+Como o exemplo abaixo:
+
+[
+    {},
+    {
+        "RA": "67890",
+        "Nome": "Teste Terceiro",
+        "Turma": "primeiro_noite"
+    },
+    {},
+    {
+        "RA": "12345",
+        "Nome": "Aluno de Teste de Listagem 1",
+        "Turma": "primeiro_noite"
+    },
+    {
+        "RA": "23456",
+        "Nome": "Aluno de Teste de Listagem 2",
+        "Turma": "primeiro_noite"
+    },
+    {
+        "RA": "34567",
+        "Nome": "Aluno de Teste de Listagem 3",
+        "Turma": "primeiro_noite"
+    }
+]
+
+________________________________________________________________________________________________________________
+
+
+8. Obter os detalhes de um aluno específico:
+
+Método: GET
+
+URL: http://localhost:4000/alunos/:RA
+
+Substitua :RA pelo RA do aluno que deseja obter os detalhes.
+Por exemplo: http://localhost:4000/alunos/67890
+
+Body (none): 
+*Não é necessário escrever um JSON.
+
+Resultado esperado: Deve retornar os detalhes do aluno específico.
+Por exemplo:
+
+{
+    "Nome": "Teste Terceiro",
+    "Turma": "primeiro_noite",
+    "Cursos": []
+}
+
+________________________________________________________________________________________________________________

@@ -1,0 +1,17 @@
+{
+  "name": "tarefademicrosservicos",
+  "version": "1.0.0",
+  "description": "tarefa de Microsserviços - exercício de fixação Aula 7",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "microsserviços"
+  ],
+  "author": "Laura Jane Antunes",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
